@@ -121,8 +121,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KiL-fE-fHS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                                <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KiL-fE-fHS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="586798447.55938494">
                                                         <!--2019-08-06 15:34:07 +0000-->
                                                     </date>
@@ -170,7 +170,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fn-c9-rNg">
+                                                <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fn-c9-rNg">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="586884847.55938494">
                                                         <!--2019-08-07 15:34:07 +0000-->

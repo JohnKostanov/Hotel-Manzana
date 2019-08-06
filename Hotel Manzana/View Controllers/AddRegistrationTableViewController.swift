@@ -18,6 +18,23 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet var checkOutDateLabel: UILabel!
     @IBOutlet var checkOutDatePicker: UIDatePicker!
     
+    // MARK: - Properties
+    let checkInDateLabelIndexPath = IndexPath(row: 0, section: 1)
+    let checkInDatePickerIndexPath = IndexPath(row: 1, section: 1)
+    let checkOutDateLabelIndexPath = IndexPath(row: 2, section: 1)
+    let checkOutDatePickerIndexPath = IndexPath(row: 3, section: 1)
+    
+    var isCheckInDatePickerShown: Bool = false {
+        didSet {
+            checkInDatePicker.isHidden = !isCheckInDatePickerShown
+        }
+    }
+    var isCheckOutDatePickerShown: Bool = false {
+        didSet {
+            checkOutDatePicker.isHidden = !isCheckOutDatePickerShown
+        }
+    }
+    
     // MARK: - UIViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,5 +80,35 @@ class AddRegistrationTableViewController: UITableViewController {
                             wifi: false
         )
         print(#line, #function, registration)
+    }
+}
+// MARK: - UITableViewDataSource
+extension AddRegistrationTableViewController /*: UITableViewDataSource */ {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath {
+        case checkInDatePickerIndexPath:
+            return isCheckInDatePickerShown ? UITableView.automaticDimension : 0
+        case checkOutDatePickerIndexPath:
+            return isCheckOutDatePickerShown ?  UITableView.automaticDimension : 0
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+}
+// MARK: - UITableViewDelegate
+extension AddRegistrationTableViewController/*: UITableViewDelegate */ {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath {
+        case checkInDateLabelIndexPath:
+            isCheckInDatePickerShown.toggle()
+            isCheckOutDatePickerShown = false
+        case checkOutDateLabelIndexPath:
+            isCheckOutDatePickerShown.toggle()
+            isCheckInDatePickerShown = false
+        default:
+            return
+        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
