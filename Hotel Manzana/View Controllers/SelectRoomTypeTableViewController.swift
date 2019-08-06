@@ -8,11 +8,12 @@
 
 import UIKit
 
-class CelectRoomTypeTableViewController: UITableViewController {
+class SelectRoomTypeTableViewController: UITableViewController {
+    var delagate: SelectRoomTypeTableViewControllerProtocol?
     var roomType: RoomType?
 }
 // MARK: - UITableViewDataSource
-extension CelectRoomTypeTableViewController/*: UITableViewDataSource */ {
+extension SelectRoomTypeTableViewController/*: UITableViewDataSource */ {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RoomType.all.count
     }
@@ -27,10 +28,11 @@ extension CelectRoomTypeTableViewController/*: UITableViewDataSource */ {
     }
 }
 // MARK: - UITableViewDelegate
-extension CelectRoomTypeTableViewController/*: UITableViewDelegate */ {
+extension SelectRoomTypeTableViewController/*: UITableViewDelegate */ {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         roomType = RoomType.all[indexPath.row]
+        delagate?.didSelect(roomType: roomType!)
         tableView.reloadData()
     }
 }

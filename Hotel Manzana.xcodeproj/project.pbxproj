@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		522ADB8322FA0FB000A46F8B /* CelectRoomTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522ADB8222FA0FB000A46F8B /* CelectRoomTypeTableViewController.swift */; };
+		522ADB8322FA0FB000A46F8B /* SelectRoomTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522ADB8222FA0FB000A46F8B /* SelectRoomTypeTableViewController.swift */; };
+		522ADB8622FA158F00A46F8B /* SelectRoomTypeTableViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522ADB8522FA158F00A46F8B /* SelectRoomTypeTableViewControllerProtocol.swift */; };
 		5232935622F9C1C5004048B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232935522F9C1C5004048B6 /* AppDelegate.swift */; };
 		5232935B22F9C1C5004048B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5232935922F9C1C5004048B6 /* Main.storyboard */; };
 		5232935D22F9C1C7004048B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5232935C22F9C1C7004048B6 /* Assets.xcassets */; };
@@ -18,7 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		522ADB8222FA0FB000A46F8B /* CelectRoomTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelectRoomTypeTableViewController.swift; sourceTree = "<group>"; };
+		522ADB8222FA0FB000A46F8B /* SelectRoomTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoomTypeTableViewController.swift; sourceTree = "<group>"; };
+		522ADB8522FA158F00A46F8B /* SelectRoomTypeTableViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoomTypeTableViewControllerProtocol.swift; sourceTree = "<group>"; };
 		5232935222F9C1C5004048B6 /* Hotel Manzana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotel Manzana.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5232935522F9C1C5004048B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5232935A22F9C1C5004048B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		522ADB8422FA154A00A46F8B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				522ADB8522FA158F00A46F8B /* SelectRoomTypeTableViewControllerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		5232934922F9C1C5004048B6 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +70,7 @@
 		5232935422F9C1C5004048B6 /* Hotel Manzana */ = {
 			isa = PBXGroup;
 			children = (
+				522ADB8422FA154A00A46F8B /* Protocols */,
 				5232936722F9C1ED004048B6 /* App */,
 				5232936922F9C22E004048B6 /* Model */,
 				5232936A22F9C251004048B6 /* View Controllers */,
@@ -100,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				5232936F22F9CD6C004048B6 /* AddRegistrationTableViewController.swift */,
-				522ADB8222FA0FB000A46F8B /* CelectRoomTypeTableViewController.swift */,
+				522ADB8222FA0FB000A46F8B /* SelectRoomTypeTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -176,9 +187,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522ADB8622FA158F00A46F8B /* SelectRoomTypeTableViewControllerProtocol.swift in Sources */,
 				5232936C22F9CA01004048B6 /* Registration.swift in Sources */,
 				5232935622F9C1C5004048B6 /* AppDelegate.swift in Sources */,
-				522ADB8322FA0FB000A46F8B /* CelectRoomTypeTableViewController.swift in Sources */,
+				522ADB8322FA0FB000A46F8B /* SelectRoomTypeTableViewController.swift in Sources */,
 				5232937022F9CD6C004048B6 /* AddRegistrationTableViewController.swift in Sources */,
 				5232936E22F9CB1C004048B6 /* RoomType.swift in Sources */,
 			);

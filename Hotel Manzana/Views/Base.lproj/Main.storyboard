@@ -334,7 +334,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ccs-w4-VWG" kind="show" id="gIM-xa-n5W"/>
+                                            <segue destination="ccs-w4-VWG" kind="show" identifier="SelectRoomType" id="gIM-xa-n5W"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -364,6 +364,7 @@
                         <outlet property="numberOfAdultsStepper" destination="7X4-wq-dID" id="AN0-MB-QTg"/>
                         <outlet property="numberOfChildrenLabel" destination="3em-E7-KW6" id="eun-qF-zgf"/>
                         <outlet property="numberOfChildrenStepper" destination="pGf-3d-6Kj" id="7Wo-9k-Add"/>
+                        <outlet property="roomTypeLabel" destination="1dL-Hv-QTs" id="7CJ-ek-1EX"/>
                         <outlet property="wifiSwitch" destination="YaB-Ky-aou" id="Uqi-YW-HEs"/>
                     </connections>
                 </tableViewController>
@@ -374,7 +375,7 @@
         <!--Room Celection-->
         <scene sceneID="Q9t-uh-ONi">
             <objects>
-                <tableViewController id="ccs-w4-VWG" customClass="CelectRoomTypeTableViewController" customModule="Hotel_Manzana" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ccs-w4-VWG" customClass="SelectRoomTypeTableViewController" customModule="Hotel_Manzana" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AJJ-4q-ikO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

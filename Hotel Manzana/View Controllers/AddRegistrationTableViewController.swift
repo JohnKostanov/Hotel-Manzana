@@ -22,6 +22,7 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet var numberOfChildrenLabel: UILabel!
     @IBOutlet var numberOfChildrenStepper: UIStepper!
     @IBOutlet var wifiSwitch: UISwitch!
+    @IBOutlet var roomTypeLabel: UILabel!
     
     // MARK: - Properties
     let checkInDateLabelIndexPath = IndexPath(row: 0, section: 1)
@@ -39,7 +40,6 @@ class AddRegistrationTableViewController: UITableViewController {
             checkOutDatePicker.isHidden = !isCheckOutDatePickerShown
         }
     }
-    
     var roomType: RoomType?
     
     // MARK: - UIViewController Methods
@@ -49,6 +49,16 @@ class AddRegistrationTableViewController: UITableViewController {
         checkInDatePicker.minimumDate = midnightToday
         checkInDatePicker.date = midnightToday
         updateDateViews()
+        updateNumberOfGuests()
+        updateRoomType()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "SelectRoomType" else { return }
+        let destination = segue.destination as! SelectRoomTypeTableViewController
+        destination.delagate = self
+        destination.roomType = roomType
     }
     
     // MARK: - UI Methods
@@ -70,6 +80,14 @@ class AddRegistrationTableViewController: UITableViewController {
         numberOfChildrenLabel.text = "\(numberOfChildren)"
     }
     
+    func updateRoomType() {
+        if let roomType = roomType {
+            roomTypeLabel.text = roomType.name
+        } else {
+            roomTypeLabel.text = "Non Set"
+        }
+    }
+    
     // MARK: - Actions
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
         updateDateViews()
@@ -85,6 +103,7 @@ class AddRegistrationTableViewController: UITableViewController {
         let numberOfAdults = Int(numberOfAdultsStepper.value)
         let numberOfChildren = Int(numberOfChildrenStepper.value)
         let wifi = wifiSwitch.isOn
+
         
         let registration = Registration(
             firstName: firstName,
@@ -94,7 +113,7 @@ class AddRegistrationTableViewController: UITableViewController {
             checkOutDate: checkOutDate,
             numberOfAdults: numberOfAdults,
             numberOfChildren: numberOfChildren,
-            roomType: RoomType(id: 0, name: "", shortName: "", price: 0),
+            roomType: roomType,
             wifi: wifi
         )
         print(#line, #function, registration)
@@ -133,4 +152,13 @@ extension AddRegistrationTableViewController/*: UITableViewDelegate */ {
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+}
+// MARK: - SelectRoomTypeTableViewControllerProtocol
+extension AddRegistrationTableViewController: SelectRoomTypeTableViewControllerProtocol {
+    func didSelect(roomType: RoomType) {
+        self.roomType = roomType
+        updateRoomType()
+    }
+    
+    
 }
