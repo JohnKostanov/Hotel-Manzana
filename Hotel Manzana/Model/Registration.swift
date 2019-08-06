@@ -15,6 +15,7 @@ struct Registration {
     
     var checkInDate: Date
     var checkOutDate: Date
+    
     var numberOfAdults: Int
     var numberOfChildren: Int
     

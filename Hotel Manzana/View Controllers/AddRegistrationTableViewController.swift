@@ -17,6 +17,11 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet var checkInDatePicker: UIDatePicker!
     @IBOutlet var checkOutDateLabel: UILabel!
     @IBOutlet var checkOutDatePicker: UIDatePicker!
+    @IBOutlet var numberOfAdultsLabel: UILabel!
+    @IBOutlet var numberOfAdultsStepper: UIStepper!
+    @IBOutlet var numberOfChildrenLabel: UILabel!
+    @IBOutlet var numberOfChildrenStepper: UIStepper!
+    @IBOutlet var wifiSwitch: UISwitch!
     
     // MARK: - Properties
     let checkInDateLabelIndexPath = IndexPath(row: 0, section: 1)
@@ -56,6 +61,13 @@ class AddRegistrationTableViewController: UITableViewController {
         checkOutDateLabel.text = dateFormatter.string(from: checkOutDatePicker.date)
     }
     
+    func updateNumberOfGuests() {
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let numberOfChildren = Int(numberOfChildrenStepper.value)
+        numberOfAdultsLabel.text = "\(numberOfAdults)"
+        numberOfChildrenLabel.text = "\(numberOfChildren)"
+    }
+    
     // MARK: - Actions
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
         updateDateViews()
@@ -68,18 +80,26 @@ class AddRegistrationTableViewController: UITableViewController {
         
         let checkInDate = checkInDatePicker.date
         let checkOutDate = checkOutDatePicker.date
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let numberOfChildren = Int(numberOfChildrenStepper.value)
+        let wifi = wifiSwitch.isOn
         
-        let registration = Registration(firstName: firstName,
-                            lastName: lastName,
-                            emailAdress: email,
-                            checkInDate: checkInDate,
-                            checkOutDate: checkOutDate,
-                            numberOfAdults: 0,
-                            numberOfChildren: 0,
-                            roomType: RoomType(id: 0, name: "", shortName: "", price: 0),
-                            wifi: false
+        let registration = Registration(
+            firstName: firstName,
+            lastName: lastName,
+            emailAdress: email,
+            checkInDate: checkInDate,
+            checkOutDate: checkOutDate,
+            numberOfAdults: numberOfAdults,
+            numberOfChildren: numberOfChildren,
+            roomType: RoomType(id: 0, name: "", shortName: "", price: 0),
+            wifi: wifi
         )
         print(#line, #function, registration)
+    }
+    
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        updateNumberOfGuests()
     }
 }
 // MARK: - UITableViewDataSource
