@@ -10,6 +10,7 @@ import UIKit
 
 class AddRegistrationTableViewController: UITableViewController {
     // MARK: - Outlets
+    @IBOutlet var doneBarButtonItem: UIBarButtonItem!
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
@@ -51,6 +52,11 @@ class AddRegistrationTableViewController: UITableViewController {
         updateDateViews()
         updateNumberOfGuests()
         updateRoomType()
+        updateDoneBarButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateDoneBarButton()
     }
     
     // MARK: - Navigation
@@ -62,6 +68,17 @@ class AddRegistrationTableViewController: UITableViewController {
     }
     
     // MARK: - UI Methods
+    func updateDoneBarButton() {
+        guard let textFirstName = firstNameTextField.text else { return }
+        guard let textLastName = lastNameTextField.text else { return }
+        guard let textEmail = emailTextField.text else { return }
+        if textFirstName.isEmpty || textLastName.isEmpty || textEmail.isEmpty || roomTypeLabel.text == "Non Set" {
+            doneBarButtonItem.isEnabled = false
+        } else {
+            doneBarButtonItem.isEnabled = true
+        }
+    }
+    
     func updateDateViews() {
         checkOutDatePicker.minimumDate = checkInDatePicker.date.addingTimeInterval(60 * 60 * 24)
         
@@ -122,6 +139,11 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         updateNumberOfGuests()
     }
+    
+    @IBAction func firstNameLastNameEmailTextField(_ sender: UITextField) {
+        updateDoneBarButton()
+    }
+    
 }
 // MARK: - UITableViewDataSource
 extension AddRegistrationTableViewController /*: UITableViewDataSource */ {

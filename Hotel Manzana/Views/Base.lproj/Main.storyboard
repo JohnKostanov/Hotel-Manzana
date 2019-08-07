@@ -32,6 +32,10 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="firstNameLastNameEmailTextField:" destination="Cdd-Mb-S11" eventType="editingDidEnd" id="3ea-uw-veS"/>
+                                                        <action selector="firstNameLastNameEmailTextField:" destination="Cdd-Mb-S11" eventType="editingChanged" id="bC2-g1-1kt"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -54,6 +58,10 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="firstNameLastNameEmailTextField:" destination="Cdd-Mb-S11" eventType="editingDidEnd" id="GXw-th-mpb"/>
+                                                        <action selector="firstNameLastNameEmailTextField:" destination="Cdd-Mb-S11" eventType="editingChanged" id="qQW-gr-roZ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -76,6 +84,10 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="firstNameLastNameEmailTextField:" destination="Cdd-Mb-S11" eventType="editingChanged" id="5SY-d1-S1g"/>
+                                                        <action selector="firstNameLastNameEmailTextField:" destination="Cdd-Mb-S11" eventType="editingDidEnd" id="D8R-uu-Fc0"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -357,6 +369,7 @@
                         <outlet property="checkInDatePicker" destination="KiL-fE-fHS" id="S5U-Gn-zjg"/>
                         <outlet property="checkOutDateLabel" destination="1Bq-Yh-lQg" id="Tem-AM-85t"/>
                         <outlet property="checkOutDatePicker" destination="2Fn-c9-rNg" id="kHt-iB-7pQ"/>
+                        <outlet property="doneBarButtonItem" destination="GhH-la-FNL" id="3CJ-ou-1Pa"/>
                         <outlet property="emailTextField" destination="FyK-3H-VHg" id="TYL-0C-6MR"/>
                         <outlet property="firstNameTextField" destination="RTU-Ze-dMA" id="kgy-6T-kj3"/>
                         <outlet property="lastNameTextField" destination="Gf6-Tn-SIP" id="LvG-rk-sNc"/>
