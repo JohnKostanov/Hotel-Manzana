@@ -21,7 +21,6 @@ class GuestListTableViewController: UITableViewController {
 extension GuestListTableViewController/*: UITableViewDataSource*/ {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return guestList.count
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,7 +29,34 @@ extension GuestListTableViewController/*: UITableViewDataSource*/ {
         
         cellManager.configure(cell, with: guest)
         return cell
-        
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedGuest = guestList.remove(at: sourceIndexPath.row)
+        guestList.insert(movedGuest, at: destinationIndexPath.row)
+        tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .none:
+            break
+        case .delete:
+            guestList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        case .insert:
+            break
+        default :
+            print(#line, #function, "Unknown case in file \(#file)")
+            break
+        }
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension GuestListTableViewController /*: UITableViewDelegate */ {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
 }
 
