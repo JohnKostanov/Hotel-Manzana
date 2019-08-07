@@ -507,9 +507,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="REGISTRATION" id="XKa-B9-iTO">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="GhH-la-FNL">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="GhH-la-FNL">
                             <connections>
-                                <action selector="doneBarButtonTapped:" destination="Cdd-Mb-S11" id="8xS-3y-GAN"/>
+                                <segue destination="gwK-vk-x8Q" kind="unwind" identifier="saveSegue" unwindAction="unwind:" id="nsL-LZ-PJX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -531,6 +531,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymD-Kp-fJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gwK-vk-x8Q" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2918.840579710145" y="145.98214285714286"/>
         </scene>

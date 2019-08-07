@@ -42,6 +42,7 @@ class AddRegistrationTableViewController: UITableViewController {
         }
     }
     var roomType: RoomType?
+    var guest = Guest()
     
     // MARK: - UIViewController Methods
     override func viewDidLoad() {
@@ -65,9 +66,19 @@ class AddRegistrationTableViewController: UITableViewController {
         let destination = segue.destination as! SelectRoomTypeTableViewController
         destination.delagate = self
         destination.roomType = roomType
+        
+        saveNewGuest()
     }
     
     // MARK: - UI Methods
+    func saveNewGuest() {
+        guest.firstName = firstNameTextField.text!
+        guest.lastName = lastNameTextField.text!
+        guest.email = emailTextField.text!
+        guest.periodOfResidencia = "\(checkInDateLabel.text!) - \(checkOutDateLabel.text!)"
+        guest.roomType = roomTypeLabel.text!
+    }
+    
     func updateDoneBarButton() {
         guard let textFirstName = firstNameTextField.text else { return }
         guard let textLastName = lastNameTextField.text else { return }
@@ -100,6 +111,7 @@ class AddRegistrationTableViewController: UITableViewController {
     func updateRoomType() {
         if let roomType = roomType {
             roomTypeLabel.text = roomType.name
+            guest.roomType = roomTypeLabel.text!
         } else {
             roomTypeLabel.text = "Non Set"
         }
@@ -108,32 +120,6 @@ class AddRegistrationTableViewController: UITableViewController {
     // MARK: - Actions
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
         updateDateViews()
-    }
-    
-    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
-        let firstName = firstNameTextField.text ?? ""
-        let lastName = lastNameTextField.text ?? ""
-        let email = emailTextField.text ?? ""
-        
-        let checkInDate = checkInDatePicker.date
-        let checkOutDate = checkOutDatePicker.date
-        let numberOfAdults = Int(numberOfAdultsStepper.value)
-        let numberOfChildren = Int(numberOfChildrenStepper.value)
-        let wifi = wifiSwitch.isOn
-
-        
-        let registration = Registration(
-            firstName: firstName,
-            lastName: lastName,
-            emailAdress: email,
-            checkInDate: checkInDate,
-            checkOutDate: checkOutDate,
-            numberOfAdults: numberOfAdults,
-            numberOfChildren: numberOfChildren,
-            roomType: roomType,
-            wifi: wifi
-        )
-        print(#line, #function, registration)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {

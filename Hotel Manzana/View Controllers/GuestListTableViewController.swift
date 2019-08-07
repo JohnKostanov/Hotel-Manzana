@@ -33,3 +33,18 @@ extension GuestListTableViewController/*: UITableViewDataSource*/ {
         
     }
 }
+
+// MARK: Actions
+extension GuestListTableViewController {
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        guard segue.identifier == "saveSegue" else { return }
+        
+        let source = segue.source as! AddRegistrationTableViewController
+        let guest = source.guest
+        print(guest)
+        
+        let indexPath = IndexPath(row: guestList.count, section: 0)
+        guestList.append(guest)
+        tableView.insertRows(at: [indexPath], with: .fade)
+    }
+}

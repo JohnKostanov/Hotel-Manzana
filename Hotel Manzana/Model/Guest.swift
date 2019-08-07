@@ -15,7 +15,7 @@ struct Guest: Codable {
     var periodOfResidencia: String
     var roomType: String
     
-    init(firstName: String = "", lastName: String = "", email: String = "", periodOfResidencia: String = "", roomType: String) {
+    init(firstName: String = "", lastName: String = "", email: String = "", periodOfResidencia: String = "", roomType: String = "") {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
