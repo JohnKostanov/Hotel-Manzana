@@ -10,7 +10,8 @@ import UIKit
 
 class AddRegistrationTableViewController: UITableViewController {
     // MARK: - Outlets
-    @IBOutlet var doneBarButtonItem: UIBarButtonItem!
+    @IBOutlet var saveBarButtonItem: UIBarButtonItem!
+    @IBOutlet var sendBarButtonItem: UIBarButtonItem!
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
@@ -50,14 +51,18 @@ class AddRegistrationTableViewController: UITableViewController {
         let midnightToday = Calendar.current.startOfDay(for: Date())
         checkInDatePicker.minimumDate = midnightToday
         checkInDatePicker.date = midnightToday
+        updateUI()
         updateDateViews()
         updateNumberOfGuests()
         updateRoomType()
-        updateDoneBarButton()
+        updateSaveBarButton()
+        updateSendBarButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateDoneBarButton()
+        updateSaveBarButton()
+        updateSendBarButton()
+
     }
     
     // MARK: - Navigation
@@ -71,6 +76,14 @@ class AddRegistrationTableViewController: UITableViewController {
     }
     
     // MARK: - UI Methods
+    func updateUI() {
+        firstNameTextField.text = guest.firstName
+        lastNameTextField.text = guest.lastName
+        emailTextField.text = guest.email
+        
+        roomTypeLabel.text = guest.roomType
+    }
+    
     func saveNewGuest() {
         guest.firstName = firstNameTextField.text!
         guest.lastName = lastNameTextField.text!
@@ -79,14 +92,25 @@ class AddRegistrationTableViewController: UITableViewController {
         guest.roomType = roomTypeLabel.text!
     }
     
-    func updateDoneBarButton() {
+    func updateSaveBarButton() {
         guard let textFirstName = firstNameTextField.text else { return }
         guard let textLastName = lastNameTextField.text else { return }
         guard let textEmail = emailTextField.text else { return }
         if textFirstName.isEmpty || textLastName.isEmpty || textEmail.isEmpty || roomTypeLabel.text == "Non Set" {
-            doneBarButtonItem.isEnabled = false
+            saveBarButtonItem.isEnabled = false
         } else {
-            doneBarButtonItem.isEnabled = true
+            saveBarButtonItem.isEnabled = true
+        }
+    }
+    
+    func updateSendBarButton() {
+        guard let textFirstName = firstNameTextField.text else { return }
+        guard let textLastName = lastNameTextField.text else { return }
+        guard let textEmail = emailTextField.text else { return }
+        if textFirstName.isEmpty || textLastName.isEmpty || textEmail.isEmpty || roomTypeLabel.text == "Non Set" {
+            sendBarButtonItem.isEnabled = false
+        } else {
+            sendBarButtonItem.isEnabled = true
         }
     }
     
@@ -122,12 +146,36 @@ class AddRegistrationTableViewController: UITableViewController {
         updateDateViews()
     }
     
+    @IBAction func sendBarButtonTapped(_ sender: UIBarButtonItem) {
+        let firstName = firstNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let checkInDate = checkInDatePicker.date
+        let checkOutDate = checkOutDatePicker.date
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let numberOfChildren = Int(numberOfChildrenStepper.value)
+        let wifi = wifiSwitch.isOn
+        
+        let registration = Registration(
+            firstName: firstName,
+            lastName: lastName,
+            emailAdress: email,
+            checkInDate: checkInDate,
+            checkOutDate: checkOutDate,
+            numberOfAdults: numberOfAdults,
+            numberOfChildren: numberOfChildren,
+            roomType: roomType,
+            wifi: wifi
+        )
+        print(#line, #function, registration)
+    }
+    
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         updateNumberOfGuests()
     }
     
     @IBAction func firstNameLastNameEmailTextField(_ sender: UITextField) {
-        updateDoneBarButton()
+        updateSaveBarButton()
     }
     
 }

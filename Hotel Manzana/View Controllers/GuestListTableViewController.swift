@@ -10,11 +10,24 @@ import UIKit
 
 class GuestListTableViewController: UITableViewController {
     
+    // MARK: - Properties
     let cellManager = CellManager()
     var guestList: [Guest]!
-
+    
+    // MARK: - UIViewController Methods
     override func viewDidLoad() {
         guestList = Guest.loadDefaullts()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "EditSegue" else { return }
+        guard let selectedPath = tableView.indexPathForSelectedRow else { return }
+        
+        let guest = guestList[selectedPath.row]
+        let destination = segue.destination as! AddRegistrationTableViewController
+        destination.guest = guest
+
     }
 }
 // MARK: - UITableViewDataSource
@@ -67,10 +80,16 @@ extension GuestListTableViewController {
         
         let source = segue.source as! AddRegistrationTableViewController
         let guest = source.guest
-        print(guest)
         
-        let indexPath = IndexPath(row: guestList.count, section: 0)
-        guestList.append(guest)
-        tableView.insertRows(at: [indexPath], with: .fade)
+        if let selectedPath = tableView.indexPathForSelectedRow {
+            // Edited Cell
+            guestList[selectedPath.row] = guest
+            tableView.reloadRows(at: [selectedPath], with: .automatic)
+        } else {
+            // Added Cell
+            let indexPath = IndexPath(row: guestList.count, section: 0)
+            guestList.append(guest)
+            tableView.insertRows(at: [indexPath], with: .fade)
+        }
     }
 }
