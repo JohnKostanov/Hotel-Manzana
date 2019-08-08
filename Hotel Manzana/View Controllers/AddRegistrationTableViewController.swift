@@ -48,6 +48,9 @@ class AddRegistrationTableViewController: UITableViewController {
     // MARK: - UIViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
         let midnightToday = Calendar.current.startOfDay(for: Date())
         checkInDatePicker.minimumDate = midnightToday
         checkInDatePicker.date = midnightToday
@@ -227,4 +230,12 @@ extension AddRegistrationTableViewController: SelectRoomTypeTableViewControllerP
     }
     
     
+}
+
+extension AddRegistrationTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.becomeFirstResponder()
+        textField.resignFirstResponder()
+        return true
+    }
 }
