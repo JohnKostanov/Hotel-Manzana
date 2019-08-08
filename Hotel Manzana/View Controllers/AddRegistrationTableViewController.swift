@@ -57,6 +57,7 @@ class AddRegistrationTableViewController: UITableViewController {
         updateRoomType()
         updateSaveBarButton()
         updateSendBarButton()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,6 +179,15 @@ class AddRegistrationTableViewController: UITableViewController {
         updateSaveBarButton()
     }
     
+    // Keyboard
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(AddRegistrationTableViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 // MARK: - UITableViewDataSource
 extension AddRegistrationTableViewController /*: UITableViewDataSource */ {
