@@ -27,7 +27,7 @@ struct Guest: Codable {
 extension Guest {
     static var all: [Guest] {
         return [
-        Guest(firstName: "John", lastName: "Kostanov", email: "kostanovd@iclod.com", periodOfResidencia: "10.08.19 - 12.08.19", roomType: "Penthouse"),
+        Guest(firstName: "John", lastName: "Kostanov", email: "kostanovd@icloud.com", periodOfResidencia: "10.08.19 - 12.08.19", roomType: "Penthouse"),
         Guest(firstName: "Ivan", lastName: "Ivanov", email: "ivanov@icloud.com", periodOfResidencia: "14.08.19 - 18.08.19", roomType: "One King")
         ]
     }

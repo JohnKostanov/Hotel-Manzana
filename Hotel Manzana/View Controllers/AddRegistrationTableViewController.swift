@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class AddRegistrationTableViewController: UITableViewController {
     // MARK: - Outlets
@@ -171,6 +172,17 @@ class AddRegistrationTableViewController: UITableViewController {
             roomType: roomType,
             wifi: wifi
         )
+        
+        guard MFMailComposeViewController.canSendMail() else { return }
+        
+        let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
+        
+        mailComposer.setToRecipients([email])
+        mailComposer.setSubject("Регистрация прошла успешно!")
+        mailComposer.setMessageBody("Ваши данные:  Имя - \(registration.firstName), Фамилия - \(registration.lastName), E-mail -  \(registration.emailAdress), Дата заезда - \(String(describing: checkInDateLabel.text!)), Дата выезда - \(String(describing: checkOutDateLabel.text!)), Количество взрослых - \(registration.numberOfAdults), Количество детей - \(registration.numberOfChildren), Тип номера - \(String(describing: registration.roomType!.name)), Цена номера - \(String(describing: registration.roomType!.price))$", isHTML: false)
+        
+        present(mailComposer, animated: true)
         print(#line, #function, registration)
     }
     
@@ -244,5 +256,11 @@ extension AddRegistrationTableViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
             return true
         }
+    }
+}
+
+extension AddRegistrationTableViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
     }
 }
