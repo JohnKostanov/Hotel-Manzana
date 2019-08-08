@@ -234,8 +234,15 @@ extension AddRegistrationTableViewController: SelectRoomTypeTableViewControllerP
 
 extension AddRegistrationTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.becomeFirstResponder()
-        textField.resignFirstResponder()
-        return true
+        if textField == firstNameTextField {
+            lastNameTextField.becomeFirstResponder()
+            return true
+        } else if textField == lastNameTextField {
+            emailTextField.becomeFirstResponder()
+            return true
+        } else {
+            textField.resignFirstResponder()
+            return true
+        }
     }
 }
