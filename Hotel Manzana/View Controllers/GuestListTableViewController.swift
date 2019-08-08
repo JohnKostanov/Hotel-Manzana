@@ -17,6 +17,7 @@ class GuestListTableViewController: UITableViewController {
     // MARK: - UIViewController Methods
     override func viewDidLoad() {
         guestList = Guest.loadDefaullts()
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     // MARK: - Navigation
